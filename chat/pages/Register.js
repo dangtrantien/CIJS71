@@ -2,7 +2,7 @@ import RegisterGroup from "../components/registerGroup.js";
 
 class Register {
     constructor () {
-        this.$registerContainer = document.createElement('div');
+        this.$registerContainer = document.createElement('form');
         this.$registerContainer.setAttribute(
             'class', 
             'w-1/3 mx-auto mt-12 bg-sky-400 border-solid border-2 border-red-300 rounded-3xl py-8 px-6'
