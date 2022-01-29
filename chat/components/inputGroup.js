@@ -1,4 +1,4 @@
-class RegisterGroup {
+class InputGroup {
     constructor (lableName, inputType, placeholder) {
         this.$container = document.createElement('div');
 
@@ -18,6 +18,10 @@ class RegisterGroup {
         this.$input.placeholder = placeholder;
     }
 
+    getValue(){
+        return this.$input.value;
+    }
+
     render () {
         this.$container.appendChild(this.$lable);
         this.$container.appendChild(this.$input);
@@ -26,4 +30,4 @@ class RegisterGroup {
     }
 }
 
-export default RegisterGroup;
+export default InputGroup;
