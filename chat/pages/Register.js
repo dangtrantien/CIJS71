@@ -22,13 +22,38 @@ class Register {
         this.$email = new InputGroup(
             'Email',
             'email',
-            'Enter your email'
+            'you@example.com'
+        );
+        this.$email.$input.classList.add(
+            'focus:invalid:outline-none',
+            'focus:invalid:ring',
+            'focus:invalid:ring-red-400',
+            'focus:invalid:text-red-400'
         );
 
         this.$password = new InputGroup(
             'Password',
             'password',
             'Enter your password'
+        );
+        this.$password.$input.classList.add('mb-0');
+        this.$password.$input.addEventListener('input', (event) => {
+            const value = event.target.value;
+            if (value.length < 8) {
+                this.$password.$input.style.outline = 'none';
+                this.$password.$input.style.border = 'solid';
+                this.$password.$input.style.borderColor = 'red';
+            }
+            else {
+                this.$password.$input.style = 'none';
+            }
+        });
+
+        this.$condition = document.createElement('p');
+        this.$condition.innerText = 'Use 8 or more characters and combinations of letters and numbers';
+        this.$condition.setAttribute(
+            'class',
+            'mx-4 mb-7 text-white text-sm'
         );
 
         this.$confirmPassword = new InputGroup(
@@ -75,7 +100,7 @@ class Register {
                     }
             }
             else {
-                alert ("Passwords do not match");
+                alert ("Password dose not match");
             }
         }
         catch (error) {
@@ -87,6 +112,7 @@ class Register {
         this.$registerContainer.appendChild(this.$displayName.render());
         this.$registerContainer.appendChild(this.$email.render());
         this.$registerContainer.appendChild(this.$password.render());
+        this.$registerContainer.appendChild(this.$condition);
         this.$registerContainer.appendChild(this.$confirmPassword.render());
         this.$registerContainer.appendChild(this.$registerBtn);
         this.$registerContainer.appendChild(this.$gotoLoginPage);

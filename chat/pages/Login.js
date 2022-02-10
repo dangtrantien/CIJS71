@@ -19,6 +19,12 @@ class Login {
             'email',
             'Enter your email'
         );
+        this.$email.$input.classList.add(
+            'focus:invalid:outline-none',
+            'focus:invalid:ring',
+            'focus:invalid:ring-red-400',
+            'focus:invalid:text-red-400'
+        );
 
         this.$password = new InputGroup(
             'Password',
@@ -36,7 +42,7 @@ class Login {
 
         this.$gotoRegisterPage = document.createElement('span');
         this.$gotoRegisterPage.type = 'submit';
-        this.$gotoRegisterPage.innerHTML = "Don't have an account?";
+        this.$gotoRegisterPage.innerHTML = "Need an account?";
         this.$gotoRegisterPage.setAttribute(
             'class',
             'ml-8 text-xl text-white italic hover:text-black cursor-pointer'
