@@ -22,39 +22,23 @@ class Register {
         this.$email = new InputGroup(
             'Email',
             'email',
-            'you@example.com'
+            'you@example.com',
+            'Please provide a valid email address'
         );
         this.$email.$input.classList.add(
             'focus:invalid:outline-none',
             'focus:invalid:ring',
             'focus:invalid:ring-red-400',
-            'focus:invalid:text-red-400'
+            'focus:invalid:text-red-400',
         );
 
         this.$password = new InputGroup(
             'Password',
             'password',
-            'Enter your password'
+            'Enter your password',
+            'Use 8 or more characters with a combination of letters and numbers'
         );
-        this.$password.$input.classList.add('mb-0');
-        this.$password.$input.addEventListener('input', (event) => {
-            const value = event.target.value;
-            if (value.length < 8) {
-                this.$password.$input.style.outline = 'none';
-                this.$password.$input.style.border = 'solid';
-                this.$password.$input.style.borderColor = 'red';
-            }
-            else {
-                this.$password.$input.style = 'none';
-            }
-        });
-
-        this.$condition = document.createElement('p');
-        this.$condition.innerText = 'Use 8 or more characters and combinations of letters and numbers';
-        this.$condition.setAttribute(
-            'class',
-            'mx-4 mb-7 text-white text-sm'
-        );
+        this.$password.$input.addEventListener('input', this.invalidPassword);
 
         this.$confirmPassword = new InputGroup(
             'Confirm Password',
@@ -78,6 +62,26 @@ class Register {
         );
         this.$gotoLoginPage.addEventListener('click', this.gotoPage);
     }
+
+    invalidPassword = () => {
+        const password = this.$password.getValue();
+        if (password.length < 8) {
+            this.$password.$input.classList.add(
+                'focus:outline-none',
+                'focus:ring',
+                'focus:ring-red-400'
+            );
+            this.$password.$warning.classList.replace('invisible','visible');
+        }
+        else {
+            this.$password.$input.classList.remove(
+                'focus:outline-none',
+                'focus:ring',
+                'focus:ring-red-400'
+            );
+            this.$password.$warning.classList.replace('visible','invisible');
+        }
+    };
 
     gotoPage = () => {
         const loginScreen = new Login();
@@ -112,7 +116,6 @@ class Register {
         this.$registerContainer.appendChild(this.$displayName.render());
         this.$registerContainer.appendChild(this.$email.render());
         this.$registerContainer.appendChild(this.$password.render());
-        this.$registerContainer.appendChild(this.$condition);
         this.$registerContainer.appendChild(this.$confirmPassword.render());
         this.$registerContainer.appendChild(this.$registerBtn);
         this.$registerContainer.appendChild(this.$gotoLoginPage);

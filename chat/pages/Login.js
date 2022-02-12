@@ -17,7 +17,7 @@ class Login {
         this.$email = new InputGroup(
             'Email',
             'email',
-            'Enter your email'
+            'Enter your email',
         );
         this.$email.$input.classList.add(
             'focus:invalid:outline-none',
