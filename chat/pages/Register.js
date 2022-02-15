@@ -36,7 +36,7 @@ class Register {
             'Password',
             'password',
             'Enter your password',
-            'Use 8 or more characters with a combination of letters and numbers'
+            'Use 8 or more characters with a combination of letters and numbers and first character must be a letter'
         );
         this.$password.$input.addEventListener('input', this.invalidPassword);
 
@@ -65,7 +65,9 @@ class Register {
 
     invalidPassword = () => {
         const password = this.$password.getValue();
-        if (password.length < 8) {
+        const valid = /^[A-Za-z]\w{7,19}/;
+        
+        if (password != password.match(valid)) {
             this.$password.$input.classList.add(
                 'focus:outline-none',
                 'focus:ring',
@@ -94,8 +96,13 @@ class Register {
             const email = this.$email.getValue();
             const password = this.$password.getValue();
             const confirmPassword = this.$confirmPassword.getValue();
+            const valid = /^[A-Za-z]\w{7,19}/;
 
-            if (password === confirmPassword) {
+            if (password != password.match(valid)) {
+                alert ('Please provide a valid password');
+            }
+
+            else if (password === confirmPassword) {
                 const response = await createUserWithEmailAndPassword(auth, email, password);
                 const user = response.user;
                     if (user) {

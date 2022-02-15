@@ -23,11 +23,14 @@ function findEvenNumber (arr) {
     return count;
 }
 
-findEvenNumber (nums)
+// findEvenNumber (nums)
 
 //BT 2
 const nums1 = [ 5, 7];
 const nums2 = [ 6, 2, 5];
+
+let res = nums1.map((value) => value = 1.valueOf(nums2))
+console.log(res);
 
 function merge (arr1, arr2) {
     nums1.sort((a,b) => a-b)
@@ -38,4 +41,4 @@ function merge (arr1, arr2) {
 
 }
 
-merge (nums1, nums2)
+// merge (nums1, nums2)
