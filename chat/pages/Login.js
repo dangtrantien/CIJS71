@@ -16,14 +16,8 @@ class Login {
 
         this.$email = new InputGroup(
             'Email',
-            'email',
+            'text',
             'Enter your email',
-        );
-        this.$email.$input.classList.add(
-            'focus:invalid:outline-none',
-            'focus:invalid:ring',
-            'focus:invalid:ring-red-400',
-            'focus:invalid:text-red-400'
         );
 
         this.$password = new InputGroup(

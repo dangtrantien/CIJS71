@@ -5,7 +5,7 @@ import Login from "./Login.js";
 import app from "../index.js";
 
 class Register {
-    constructor() {
+    constructor () {
         this.$registerContainer = document.createElement('form');
         this.$registerContainer.setAttribute(
             'class',
@@ -21,22 +21,17 @@ class Register {
 
         this.$email = new InputGroup(
             'Email',
-            'email',
-            'you@example.com',
-            'Please provide a valid email address'
+            'text',
+            'Enter your email',
+            'Please provide a valid email address: email@example.com'
         );
-        this.$email.$input.classList.add(
-            'focus:invalid:outline-none',
-            'focus:invalid:ring',
-            'focus:invalid:ring-red-400',
-            'focus:invalid:text-red-400',
-        );
+        this.$email.$input.addEventListener('input', this.invalidEmail);
 
         this.$password = new InputGroup(
             'Password',
             'password',
             'Enter your password',
-            'Use 8 or more characters with a combination of letters and numbers and first character must be a letter'
+            'Use 8 or more characters, at least one number and first character must be a letter'
         );
         this.$password.$input.addEventListener('input', this.invalidPassword);
 
@@ -63,26 +58,18 @@ class Register {
         this.$gotoLoginPage.addEventListener('click', this.gotoPage);
     }
 
+    invalidEmail = () => {
+        const email = this.$email.getValue();
+        let validEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        this.$email.setError(email,validEmail);
+    }
+
     invalidPassword = () => {
         const password = this.$password.getValue();
-        const valid = /^[A-Za-z]\w{7,19}/;
+        let validPassword = /^[A-Za-z](?=.*\d)\w{7,}$/;
         
-        if (password != password.match(valid)) {
-            this.$password.$input.classList.add(
-                'focus:outline-none',
-                'focus:ring',
-                'focus:ring-red-400'
-            );
-            this.$password.$warning.classList.replace('invisible','visible');
-        }
-        else {
-            this.$password.$input.classList.remove(
-                'focus:outline-none',
-                'focus:ring',
-                'focus:ring-red-400'
-            );
-            this.$password.$warning.classList.replace('visible','invisible');
-        }
+        this.$password.setError(password,validPassword);
     };
 
     gotoPage = () => {
@@ -96,9 +83,15 @@ class Register {
             const email = this.$email.getValue();
             const password = this.$password.getValue();
             const confirmPassword = this.$confirmPassword.getValue();
-            const valid = /^[A-Za-z]\w{7,19}/;
+            
+            const validEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            const validPassword = /^[A-Za-z](?=.*\d)\w{7,}$/;
+            
+            if (!email.match(validEmail)) {
+                alert ('Please provide a valid email');
+            }
 
-            if (password != password.match(valid)) {
+            else if (!password.match(validPassword)) {
                 alert ('Please provide a valid password');
             }
 
