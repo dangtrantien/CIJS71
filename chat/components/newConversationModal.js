@@ -1,3 +1,5 @@
+import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-firestore.js";
+import { auth, db } from "../constants/commons.js";
 import InputGroup from "./inputGroup.js";
 
 class NewConversationModal {
@@ -9,8 +11,14 @@ class NewConversationModal {
         );
         this.$container.addEventListener('submit', this.onSubmit);
 
-        this.$email = new InputGroup(
+        this.$conversationName = new InputGroup(
             'Start a new conversation',
+            'text',
+            'Enter conversation name'
+        );
+
+        this.$email = new InputGroup(
+            'Email',
             'text',
             'Enter email address'
         );
@@ -26,17 +34,23 @@ class NewConversationModal {
 
     onSubmit = (e) => {
         e.preventDefault();
+        const conversationName = this.$conversationName.getValue();
         const email = this.$email.getValue();
-        if (!email) {
-            alert ('Wrong email address');
-        }
-        else {
-            console.log(email);
-            this.$container.classList.add('hidden');
-        }
+
+        const newConversation = {
+            members: [email, auth.currentUser.email],
+            conversationName,
+            createDate: new Date().toLocaleString()
+        };
+
+        const ref = collection(db, 'conversations');
+        addDoc(ref, newConversation);
+        
+        this.$container.classList.add('hidden');
     }
 
     render () {
+        this.$container.appendChild(this.$conversationName.render());
         this.$container.appendChild(this.$email.render());
         this.$container.appendChild(this.$submitBtn);
 

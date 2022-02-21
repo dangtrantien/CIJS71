@@ -10,31 +10,23 @@
     left: 50%;
     transform: translate(-50%,-50%);
     width: 480px;
-    height: 190px;
+    height: auto;
     padding: 20px;
     background-color: #a3e635;
     border-radius: 10px;
-}
-
-.input-chat {
-    width: 1130px;
-    position: absolute;
-    background-color: #bef26466;
-    top: 93%;
-    left: 25.5%;
 }
 
 .send-btn {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 100px;
-    font-size: 18px;
+    width: 130px;
+    font-size: 20px;
     padding: 2px;
     color: white;
-    border-radius: 10px;
+    border-radius: 15px;
     background-color: #a3e635;
     position: absolute;
-    top: 93.5%;
-    left: 92%;
+    top: 94.5%;
+    left: 90%;
 }

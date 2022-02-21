@@ -1,3 +1,5 @@
+import ConversationItem from "./conversationItem.js";
+
 class ActiveConcersation {
     constructor (titleName) {
         this.$container = document.createElement('div');
@@ -12,11 +14,11 @@ class ActiveConcersation {
         this.$member = document.createElement('h4');
         this.$member.innerText = '0 member';
     }
-    render (container) {
+    render () {
         this.$container.appendChild(this.$title);
         this.$container.appendChild(this.$member);
 
-        container.appendChild(this.$container);
+        return this.$container;
     }
 }
 
