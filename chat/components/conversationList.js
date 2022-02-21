@@ -1,5 +1,5 @@
 import { signOut } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-auth.js";
-import { collection, query, where, doc, getDoc, getDocs, onSnapshot } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-firestore.js";
+import { collection, query, where, onSnapshot } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-firestore.js";
 import { auth, db } from "../constants/commons.js";
 import ConversationItem from "./conversationItem.js";
 import NewConversationBtn from "./newConversationBtn.js";
