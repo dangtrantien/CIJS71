@@ -9,9 +9,13 @@ class Main {
             'flex'
         );
 
-        this.$conversationList = new ConversationList();
+        this.$conversationList = new ConversationList((conversation) => this.setActiveConversation(conversation));
 
         this.$chatContainer = new ChatContainer();
+    }
+
+    setActiveConversation (conversation) {
+        this.$chatContainer.setActiveConversation(conversation);
     }
 
     render (container) {

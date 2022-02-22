@@ -1,6 +1,10 @@
 class ConversationItem {
-    constructor (conversation) {
+    constructor (conversation, activeConversation) {
+        this._conversationInfo = conversation;
+        this._sactiveConversation = activeConversation;
+
         this.$container = document.createElement('div');
+        this.$container.addEventListener('click', this.setActiveConversaion);
 
         this.$name = document.createElement('h4');
         this.$name.innerText = conversation.conversationName;
@@ -8,6 +12,10 @@ class ConversationItem {
             'class',
             'h-16 rounded p-4 mb-2 text-xl shadow shadow-gray-400 cursor-pointer hover:bg-lime-400 hover:text-white'
         );
+    }
+
+    setActiveConversaion = () => {
+        this._sactiveConversation(this._conversationInfo);
     }
 
     render () {

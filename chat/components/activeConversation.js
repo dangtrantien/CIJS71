@@ -1,7 +1,5 @@
-import ConversationItem from "./conversationItem.js";
-
 class ActiveConcersation {
-    constructor (titleName) {
+    constructor () {
         this.$container = document.createElement('div');
         this.$container.setAttribute(
             'class',
@@ -9,11 +7,15 @@ class ActiveConcersation {
         );
         
         this.$title = document.createElement('h4');
-        this.$title.innerText = titleName;
 
         this.$member = document.createElement('h4');
-        this.$member.innerText = '0 member';
     }
+
+    setConversationTitile (conversation) {
+        this.$title.innerText = conversation.conversationName;
+        this.$member.innerText = `${conversation.members.length} member`;
+    }
+
     render () {
         this.$container.appendChild(this.$title);
         this.$container.appendChild(this.$member);

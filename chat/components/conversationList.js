@@ -6,7 +6,9 @@ import NewConversationBtn from "./newConversationBtn.js";
 import NewConversationModal from "./newConversationModal.js";
 
 class ConversationList {
-    constructor () {
+    constructor (activeConversation) {
+        this._activeConversation = activeConversation;
+
         this.$conversationListContainer = document.createElement('div');
         this.$conversationListContainer.setAttribute(
             'class',
@@ -53,13 +55,16 @@ class ConversationList {
 
     async createConversationList(){
         const conversationRef = collection(db, 'conversations');
-        const q = query(conversationRef, where('members', 'array-contains-any', [auth.currentUser.email]));
+        const q = query(conversationRef, where('members', 'array-contains', auth.currentUser.email));
 
         onSnapshot(q, (snapshot) => {
             snapshot.docChanges().forEach((change) => {
                 if(change.type === 'added') {
                     const changes = change.doc.data();
-                    const conversationItem = new ConversationItem(changes);
+                    const conversationItem = new ConversationItem(
+                        changes,
+                        this._activeConversation
+                    );
                     this.$conversationListContainer.appendChild(conversationItem.render());
                 }
             })

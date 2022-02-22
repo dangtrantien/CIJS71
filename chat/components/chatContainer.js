@@ -3,6 +3,7 @@ import ChatInput from "./chatInput.js";
 import ChatMessageList from "./chatMessageList.js";
 
 class ChatContainer {
+    _activeConversation;
     constructor () {
         this.$chatContainer = document.createElement('div');
         this.$chatContainer.setAttribute(
@@ -10,11 +11,17 @@ class ChatContainer {
             'w-3/4 h-screen border flex flex-col'
         );
         
-        this.$activeConversation = new ActiveConcersation('Active conversation');
+        this.$activeConversation = new ActiveConcersation();
 
         this.$chatMessage = new ChatMessageList();
 
         this.$chatInput = new ChatInput();
+    }
+
+    setActiveConversation (activeConversation) {
+        this._activeConversation = activeConversation;
+        this.$activeConversation.setConversationTitile(activeConversation);
+        this.$chatMessage.setConversationTitile(activeConversation);
     }
 
     render (container) {

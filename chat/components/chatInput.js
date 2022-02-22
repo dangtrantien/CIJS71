@@ -7,8 +7,8 @@ class ChatInput {
         this.$inputChat.type = 'text';
         this.$inputChat.placeholder = 'Add your message';
         this.$inputChat.setAttribute(
-            'class',
-            'w-full h-12 rounded-3xl bg-lime-200 px-6'
+            'class', 
+            'w-full h-12 my-4 px-6 rounded-3xl bg-lime-200'
         );
 
         this.$sendBtn = document.createElement('button');
@@ -23,7 +23,7 @@ class ChatInput {
 
     onSubmit = (e) => {
         e.preventDefault();
-        console.log('Message');
+        
     }
 
     render () {
