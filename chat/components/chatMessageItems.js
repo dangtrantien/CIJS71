@@ -3,13 +3,13 @@ class ChatMessageItems {
         this.$container = document.createElement('div');
         this.$container.setAttribute(
             'class',
-            'p-4'
+            'p-4 flex'
         );
 
         this.$user = document.createElement('div');
         this.$user.setAttribute(
             'class',
-            'flex w-4/5'
+            'flex flex-col'
         );
 
         this.$userIcon = 
@@ -34,15 +34,15 @@ class ChatMessageItems {
         this.$messageTime.innerText = '8:20 pm';
         this.$messageTime.setAttribute(
             'class',
-            'text-sm text-gray-400 ml-14'
+            'text-sm text-gray-400 flex'
         );
     }
 
     render () {
         this.$container.appendChild(this.$user);
-        this.$user.insertAdjacentHTML('afterBegin',this.$userIcon);
+        this.$user.insertAdjacentHTML('beforeBegin',this.$userIcon);
         this.$user.appendChild(this.$userMessage);
-        this.$container.appendChild(this.$messageTime);
+        this.$user.appendChild(this.$messageTime);
 
         return this.$container;
     }

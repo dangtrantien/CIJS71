@@ -1,3 +1,5 @@
+import { db } from "../constants/commons.js";
+
 class ChatInput {
     constructor () {
         this.$container = document.createElement('form');

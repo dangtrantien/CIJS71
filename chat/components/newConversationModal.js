@@ -1,5 +1,5 @@
 import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-firestore.js";
-import { auth, db } from "../constants/commons.js";
+import { auth, ft } from "../constants/commons.js";
 import InputGroup from "./inputGroup.js";
 
 class NewConversationModal {
@@ -43,7 +43,7 @@ class NewConversationModal {
             createDate: new Date().toLocaleString()
         };
 
-        const ref = collection(db, 'conversations');
+        const ref = collection(ft, 'conversations');
         addDoc(ref, newConversation);
         
         this.$container.classList.add('hidden');

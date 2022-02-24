@@ -1,6 +1,6 @@
 import { signOut } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-auth.js";
 import { collection, query, where, onSnapshot } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-firestore.js";
-import { auth, db } from "../constants/commons.js";
+import { auth, ft } from "../constants/commons.js";
 import ConversationItem from "./conversationItem.js";
 import NewConversationBtn from "./newConversationBtn.js";
 import NewConversationModal from "./newConversationModal.js";
@@ -54,7 +54,7 @@ class ConversationList {
     }
 
     async createConversationList(){
-        const conversationRef = collection(db, 'conversations');
+        const conversationRef = collection(ft, 'conversations');
         const q = query(conversationRef, where('members', 'array-contains', auth.currentUser.email));
 
         onSnapshot(q, (snapshot) => {

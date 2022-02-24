@@ -1,6 +1,7 @@
+
+import { db } from "../constants/commons.js";
 import { mockMessage } from "../acet/css/mockConversation.js";
 import ChatMessageItems from "./chatMessageItems.js";
-
 class ChatMessageList {
     constructor () {
         this.$container = document.createElement('div');
@@ -16,11 +17,19 @@ class ChatMessageList {
         mockMessage.forEach((msg) => {
             const messageItems = new ChatMessageItems(msg);
             this.$container.appendChild(messageItems.render());
+            
+            if (msg.senderId === 'quang') {   
+                messageItems.$container.classList.add('flex-row-reverse');
+                messageItems.$messageTime.classList.add('flex-row-reverse')
+            }
+            else {
+                messageItems.$userMessage.classList.add('bg-gray-100','text-gray-400');
+            }
         });
     }
 
-    setConversationTitile (conversation) {
-        this.$container.innerText = conversation.conversationName;
+    setConversationMessage (conversation) {
+
     }
 
     render () {

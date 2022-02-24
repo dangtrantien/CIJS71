@@ -3,7 +3,6 @@ import ChatInput from "./chatInput.js";
 import ChatMessageList from "./chatMessageList.js";
 
 class ChatContainer {
-    _activeConversation;
     constructor () {
         this.$chatContainer = document.createElement('div');
         this.$chatContainer.setAttribute(
@@ -19,9 +18,8 @@ class ChatContainer {
     }
 
     setActiveConversation (activeConversation) {
-        this._activeConversation = activeConversation;
         this.$activeConversation.setConversationTitile(activeConversation);
-        this.$chatMessage.setConversationTitile(activeConversation);
+        this.$chatMessage.setConversationMessage(activeConversation);
     }
 
     render (container) {
