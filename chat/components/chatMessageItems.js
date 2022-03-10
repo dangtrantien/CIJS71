@@ -1,9 +1,13 @@
+import { auth } from "../constants/commons.js"
+import { formatTime } from "../utils/helper.js"
 class ChatMessageItems {
     constructor (msg) {
+        this._userMessage = msg.senderId === auth.currentUser.uid;
+
         this.$container = document.createElement('div');
         this.$container.setAttribute(
             'class',
-            'p-4 flex'
+            `p-4 flex ${this._userMessage ? "flex-row-reverse" : ""}`
         );
 
         this.$user = document.createElement('div');
@@ -26,15 +30,14 @@ class ChatMessageItems {
         this.$userMessage.innerText = msg.content;
         this.$userMessage.setAttribute(
             'class',
-            'w-fit px-4 py-2 text-white text-xl bg-lime-500 rounded-2xl'
+            `w-fit px-4 py-2 text-white text-xl bg-lime-500 rounded-2xl ${this._userMessage ? "" : "bg-gray-100 text-gray-400"}`
         );
 
         this.$messageTime = document.createElement('div');
-        // this.$time.innerText = new Date().toTimeString;
-        this.$messageTime.innerText = '8:20 pm';
+        this.$messageTime.innerText = formatTime(msg.createDate);
         this.$messageTime.setAttribute(
             'class',
-            'text-sm text-gray-400 flex'
+            'text-sm text-gray-400'
         );
     }
 

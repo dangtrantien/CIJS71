@@ -13,31 +13,31 @@ export const mockConversation = [
 export const mockMessage = [
   {
     content: "Hello",
-    createdAt: 1,
+    createDate: 1,
     conversationId: "a",
     senderId: "quang",
   },
   {
     content: "mom",
-    createdAt: 2,
+    createDate: 2,
     conversationId: "a",
     senderId: "anonymous",
   },
   {
     content: "How are you?",
-    createdAt: 3,
+    createDate: 3,
     conversationId: "a",
     senderId: "quang",
   },
   {
     content: "I'm fine",
-    createdAt: 4,
+    createDate: 4,
     conversationId: "a",
     senderId: "anonymous",
   },
   {
     content: "I'm fine",
-    createdAt: 4,
+    createDate: 4,
     conversationId: "a",
     senderId: "anonymous",
   },

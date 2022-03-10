@@ -34,8 +34,3 @@ post.forEach((post) => {
     const postApp = new App(post.title, post.image);
     body.appendChild(postApp.render());
 })
-// const app = new App(
-//     'Uzumaki Naruto',
-//     'https://i.pinimg.com/originals/2c/0a/08/2c0a08b3751b4401ffa8f1719a642b9d.png'
-// );
-// body.appendChild(app.render());

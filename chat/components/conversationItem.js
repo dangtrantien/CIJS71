@@ -1,7 +1,7 @@
 class ConversationItem {
     constructor (conversation, activeConversation) {
         this._conversationInfo = conversation;
-        this._sactiveConversation = activeConversation;
+        this._setActiveConversation = activeConversation;
 
         this.$container = document.createElement('div');
         this.$container.addEventListener('click', this.setActiveConversaion);
@@ -15,7 +15,7 @@ class ConversationItem {
     }
 
     setActiveConversaion = () => {
-        this._sactiveConversation(this._conversationInfo);
+        this._setActiveConversation(this._conversationInfo);
     }
 
     render () {
