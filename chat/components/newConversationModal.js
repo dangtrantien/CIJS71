@@ -42,7 +42,11 @@ class NewConversationModal {
             conversationName,
             createDate: new Date().toLocaleString()
         };
+        // using setDoc function to create a new document in the collection
+    // const collectionRef = doc(db, "conversations", "hahahhaa");
+    // setDoc(collectionRef, newConversationDocument);
 
+        // using addDoc function to create a new document in the collection
         const ref = collection(ft, 'conversations');
         addDoc(ref, newConversation);
         

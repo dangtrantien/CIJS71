@@ -4,6 +4,7 @@ import { auth, ft } from "../constants/commons.js";
 import ConversationItem from "./conversationItem.js";
 import NewConversationBtn from "./newConversationBtn.js";
 import NewConversationModal from "./newConversationModal.js";
+// import { mockConversation } from "../assets/mockData.js";
 
 class ConversationList {
     constructor (activeConversation) {
@@ -54,6 +55,34 @@ class ConversationList {
     }
 
     async createConversationList(){
+        // get collection from collection
+    // const conversationRef = doc(db, "conversations", "of0RHiGkXlnVHGwmZzCQ");
+    // const data = await getDoc(conversationRef);
+    // console.log("data", data.data());
+    // __________________________________________
+        // get all document from collection
+    // const conversationsRef = collection(db, "conversations");
+    // const data = await getDocs(conversationsRef);
+    // data.forEach((document) => {
+    //   const conversationItem = new ConversationItem(document.data());
+    //   this.$container.appendChild(conversationItem.render());
+    // });
+    // __________________________________________
+        // query document from collection (createdAt = 321)
+    // const conversationsRef = collection(db, "conversations");
+    // const q = query(conversationsRef, where("createdAt", "<", 1500));
+    // const data = await getDocs(q);
+    // data.forEach((document) => {
+    //   console.log("document", document.data());
+    // });
+    // __________________________________________
+        // listen for realtime update 1 document
+    // const documentRef = doc(db, "conversations", "AoebMOf2F3JZq5pmDD7c");
+    // onSnapshot(documentRef, (doc) => {
+    //   console.log("Current data: ", doc.data());
+    // });
+    // __________________________________________
+        // listen for realtime updates collection
         const conversationRef = collection(ft, 'conversations');
         const q = query(conversationRef, where('members', 'array-contains', auth.currentUser.email));
 
@@ -72,6 +101,10 @@ class ConversationList {
                 }
             });
         })
+    // mockConversation.forEach((conversation) => {
+    //   const conversationItem = new ConversationItem(conversation);
+    //   this.$container.appendChild(conversationItem.render());
+    // });
     }
 
     render (container) {
@@ -80,6 +113,16 @@ class ConversationList {
         this.$action.appendChild(this.$newConversationBtn.render());
         this.$action.appendChild(this.$logoutBtn);
         this.$logoutBtn.insertAdjacentHTML('beforeEnd',this.$logoutSVG);
+    // for (let i = 0; i < 20; i++) {
+    //   let temp = new ConversationItem(i);
+    //   this.$container.appendChild(temp.render());
+    // }
+
+    // for (let i = 0; i < mockConversation.length; i++) {
+    //   const conversationItem = new ConversationItem(mockConversation[i]);
+
+    //   this.$container.appendChild(conversationItem.render());
+    // }
 
         container.appendChild(this.$conversationListContainer);
     }

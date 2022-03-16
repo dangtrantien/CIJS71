@@ -66,6 +66,19 @@ class ChatInput {
     }
 
     onSubmit = async (e) => {
+    // event.preventDefault();
+    // const newMsg = {
+    //   content: this.$input.value,
+    //   createdAt: new Date().valueOf(),
+    //   senderId: auth.currentUser.uid,
+    //   conversationId: this._activeConversation.conversationId,
+    // };
+    // const messageRef = collection(db, "messages");
+    // addDoc(messageRef, newMsg)
+    //   .then(() => {})
+    //   .catch((err) => {
+    //     alert(err.message);
+    //   });
         try {
             e.preventDefault();
             const msgContent = this.$inputChat.value;

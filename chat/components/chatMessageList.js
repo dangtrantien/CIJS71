@@ -38,6 +38,13 @@ class ChatMessageList {
                 };
             });
         })
+    // getDocs(q).then((docs) => {
+    //   docs.forEach((doc) => {
+    //     const msg = doc.data();
+    //     const messageItem = new MessageItem(msg);
+    //     this.$container.appendChild(messageItem.render());
+    //   });
+    // });
     }
 
     setConversationMessage (conversation) {
