@@ -39,11 +39,17 @@ class ChatMessageItems {
             'class',
             'text-sm text-gray-400'
         );
+
+        if (msg.file) {
+            this.$img = document.createElement('img');
+            this.$img.src = msg.file;
+        }
     }
 
     render () {
         this.$container.appendChild(this.$user);
         this.$user.insertAdjacentHTML('beforeBegin',this.$userIcon);
+        if (this.$img) {this.$user.appendChild(this.$img)};
         this.$user.appendChild(this.$userMessage);
         this.$user.appendChild(this.$messageTime);
 

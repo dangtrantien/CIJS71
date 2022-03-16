@@ -15,18 +15,3 @@
     background-color: #a3e635;
     border-radius: 10px;
 }
-
-.send-btn {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 130px;
-    font-size: 20px;
-    padding: 2px;
-    color: white;
-    border-radius: 15px;
-    background-color: #a3e635;
-    position: absolute;
-    top: 92.5%;
-    left: 90.5%;
-}
