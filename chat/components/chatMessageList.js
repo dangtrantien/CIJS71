@@ -30,9 +30,10 @@ class ChatMessageList {
 
             messages.sort((a,b) => a.createDate - b.createDate);
             messages.forEach((msg) => {
-                const shouldScroll = this.$container.scrollTop + this.$container.clientHeight === this.$container.scrollHeight;
                 const messageItem = new chatMessageItems(msg);
                 this.$container.appendChild(messageItem.render());
+
+                const shouldScroll = this.$container.scrollTop + this.$container.clientHeight === this.$container.scrollHeight;
                 if (!shouldScroll) {
                     this.scrollToBottom();
                 };

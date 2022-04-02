@@ -2,8 +2,8 @@ import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9
 import { auth } from "../constants/commons.js";
 import InputGroup from "../components/inputGroup.js";
 import Register from "./Register.js";
+import Main from "./Main.js";
 import app from "../index.js";
-
 
 class Login {
     constructor () {
@@ -60,6 +60,8 @@ class Login {
                 const user = response.user;
                 if (user) {
                     alert ('Login successfull');
+                    const main = new Main();
+                    activeScreen.setActiveScreen(main);
                 }
             }
         }
