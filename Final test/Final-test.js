@@ -38,11 +38,12 @@ alternatingSums(arr2);
 //BT B
 class EnterLink {
     constructor() {
-        this.$container = document.createElement('div');
+        this.$container = document.createElement('form');
         this.$container.setAttribute(
             'class',
             'w-1/2 p-8 absolute inset-x-1/4 top-14 rounded-3xl bg-white font-medium text-xl'
         );
+        this.$container.addEventListener('submit', this.onSubmit);
 
         this.$title1 = document.createElement('h1');
         this.$title1.innerText = 'Link Shortener';
@@ -54,7 +55,7 @@ class EnterLink {
         this.$input = document.createElement('div');
         this.$input.setAttribute(
             'class',
-        'mb-2 flex items-center'
+            'mb-2 flex items-center'
         );
 
         this.$tag_name_input = document.createElement('p');
@@ -68,6 +69,7 @@ class EnterLink {
         );
 
         this.$button = document.createElement('button');
+        this.$button.type = 'submit';
 
         this._button =
             `
@@ -98,7 +100,7 @@ class EnterLink {
             'class',
             'ml-2 px-2 rounded-lg bg-rose-400 text-white hover:bg-red-500'
         );
-        
+
         this.$shiny_btn = document.createElement('button');
         this.$shiny_btn.innerText = 'shiny.link';
         this.$shiny_btn.setAttribute(
@@ -107,8 +109,16 @@ class EnterLink {
         );
 
         this.$describe = document.createElement('p');
-        this.$describe.innerText  = 'With this free Link Shortener you can make Links shorter and easier to remember. Just enter a Link into the form and click on the above Button to generate a short Link. When visiting the short-Link, the short-Link will immediately redirect you to the long Link.';
-    
+        this.$describe.innerText = 'With this free Link Shortener you can make Links shorter and easier to remember. Just enter a Link into the form and click on the above Button to generate a short Link. When visiting the short-Link, the short-Link will immediately redirect you to the long Link.';
+
+    }
+
+    onSubmit = (e) => {
+        e.preventDefault();
+
+        const input_link = this.$input_link.value;
+        const short_link = new ShortLink(input_link);
+        view.appendChild(short_link.render());
     }
 
     render() {
@@ -117,7 +127,7 @@ class EnterLink {
         this.$input.appendChild(this.$tag_name_input);
         this.$input.appendChild(this.$input_link);
         this.$input.appendChild(this.$button);
-        this.$button.insertAdjacentHTML('afterbegin',this._button);
+        this.$button.insertAdjacentHTML('afterbegin', this._button);
 
         this.$container.appendChild(this.$domain);
         this.$domain.appendChild(this.$tag_name_domain);
@@ -132,7 +142,7 @@ class EnterLink {
 }
 
 class ShortLink {
-    constructor () {
+    constructor(link) {
         this.$short_link_container = document.createElement('div');
         this.$short_link_container.setAttribute(
             'class',
@@ -143,10 +153,10 @@ class ShortLink {
         this.$title2.innerText = 'Link generated!';
 
         this.$link = document.createElement('div');
-        this.$link.innerText = 'Link';
+        this.$link.innerText = link;
         this.$link.setAttribute(
             'class',
-            'text-3xl text-green-500'
+            'text-3xl text-green-500 cursor-pointer'
         );
     }
 
@@ -160,11 +170,9 @@ class ShortLink {
 
 const view = document.getElementById('root');
 const enter_link = new EnterLink();
-const short_link = new ShortLink();
 
 view.setAttribute('class', 'bg-amber-400')
 view.appendChild(enter_link.render());
-view.appendChild(short_link.render());
 
 // async function getData() {
 //     try {
